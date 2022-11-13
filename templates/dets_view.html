@@ -1,0 +1,151 @@
+{% extends 'nav.html' %}
+
+
+{% block data %}
+<div>
+    <div class="card">
+        <h5 class="card-header">About {{data.naming}}</h5>
+        <div class="card-body">
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                <div style="display: flex; gap: 10px; margin-bottom: 5px;">
+                    <i class="fa-solid fa-tractor" style="margin-top: 5px;"></i>
+                    <h4 class="card-title">{{data.naming}}</h5>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <i class="fa-solid fa-id-card" style="font-size: 21px;"></i>
+                    <h6 class="card-subtitle mb-2 text-muted" style="margin-top: 0px;">{{data.trac_id}}</h6>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <i class="fa-solid fa-copyright" style="font-size: 21px;"></i>
+                    <h6 class="card-subtitle mb-2 text-muted" style="margin-top: 0px;">{{data.brand}}</h6>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <i class="fa-solid fa-user" style="font-size: 21px;"></i>
+                    <h6 class="card-subtitle mb-2 text-muted" style="margin-top: 0px;">{{data.farmer.username}}
+                    </h6>
+                </div>
+                <div style="border-top: 2px solid rgb(212, 212, 212); margin-top: 10px; padding-top: 10px;">
+                    <div id="specs_head" style="display: flex; gap: 10px;">
+                        <i style="font-size: 30px;" class="fa-solid fa-gear"></i>
+                        <h4>Tractor Specifications</h4>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 10px; margin-left: 25px; margin-top: 25px;">
+                        <div>
+                            <div style="display: flex; gap: 10px;">
+                                <i class="fa-solid fa-gears" style="font-size: 21px;"></i>
+                                <h6>Gear Type is</h6>
+                            </div>
+                            <h6 class="card-subtitle mb-2 text-muted" style="margin-left: 35px; margin-top: 1px;">
+                                {{data.gear_box_type}}
+                            </h6>
+                        </div>
+                        <div>
+                            <div style="display: flex; gap: 10px;">
+                                <i class="fa-solid fa-wheelchair" style="font-size: 21px;"></i>
+                                <h6>Driver's Seat</h6>
+                            </div>
+                            <h6 class="card-subtitle mb-2 text-muted" style="margin-left: 35px; margin-top: 1px;">
+                                {{data.drivers_seat}}
+                            </h6>
+                        </div>
+                        <div>
+                            <div style="display: flex; gap: 10px;">
+                                <i class="fa-solid fa-arrows-spin" style="font-size: 21px;"></i>
+                                <h6>Cab Suspension is</h6>
+                            </div>
+                            <h6 class="card-subtitle mb-2 text-muted" style="margin-left: 35px; margin-top: 1px;">
+                                {{data.cab_suspension}}
+                            </h6>
+                        </div>
+                        <div>
+                            <div style="display: flex; gap: 10px;">
+                                <i class="fa-brands fa-gitlab" style="font-size: 21px;"></i>
+                                <h6>Front Axle Suspension</h6>
+                            </div>
+                            <h6 class="card-subtitle mb-2 text-muted" style="margin-left: 35px; margin-top: 1px;">
+                                {{data.front_axle_suspension}}
+                            </h6>
+                        </div>
+                        <div>
+                            <div style="display: flex; gap: 10px;">
+                                <i class="fa-regular fa-circle" style="font-size: 21px;"></i>
+                                <h6>Wheel Drive</h6>
+                            </div>
+                            <h6 class="card-subtitle mb-2 text-muted" style="margin-left: 35px; margin-top: 1px;">
+                                {{data.wheel_drive}}
+                            </h6>
+                        </div>
+                        <div>
+                            <div style="display: flex; gap: 10px;">
+                                <i class="fa-solid fa-gauge" style="font-size: 21px;"></i>
+                                <h6>Rpm (Rounds per minute)</h6>
+                            </div>
+                            <h6 class="card-subtitle mb-2 text-muted" style="margin-left: 35px; margin-top: 1px;">
+                                {{data.rpm}}
+                            </h6>
+                        </div>
+                        <div>
+                            <div style="display: flex; gap: 10px;">
+                                <i class="fa-solid fa-truck-front" style="font-size: 21px;"></i>
+                                <h6>Pto (Front power takeoff)</h6>
+                            </div>
+                            <h6 class="card-subtitle mb-2 text-muted" style="margin-left: 35px; margin-top: 1px;">
+                                {{data.pto}}
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+                <div style="border-top: 2px solid rgb(212, 212, 212); margin-top: 10px; padding-top: 10px;">
+                    <div id="specs_head" style="display: flex; gap: 10px;">
+                        <i style="font-size: 30px;" class="fa-solid fa-circle-info"></i>
+                        <h4>Implementations</h4>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 10px; margin-left: 25px; margin-top: 25px;">
+                        {% for i in implementations %}
+                        <li>{{i}}</li>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div style="border-top: 2px solid rgb(212, 212, 212); margin-top: 10px; padding-top: 10px;">
+                    <div id="specs_head" style="display: flex; gap: 10px;">
+                        <i style="font-size: 30px;" class="fa-solid fa-user"></i>
+                        <h4>Farmer Info</h4>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 10px; margin-left: 25px; margin-top: 25px;">
+                        <div>
+                            <div style="display: flex; gap: 10px;">
+                                <i class="fa-solid fa-envelope" style="font-size: 21px;"></i>
+                                <h6>Farmer email is</h6>
+                            </div>
+                            <h6 class="card-subtitle mb-2 text-muted" style="margin-left: 35px; margin-top: 1px;">
+                                {{data.farmer.email}}
+                            </h6>
+                        </div>
+                        <div>
+                            <div style="display: flex; gap: 10px;">
+                                <i class="fa-solid fa-signature" style="font-size: 21px;"></i>
+                                <h6>Farmer username is</h6>
+                            </div>
+                            <h6 class="card-subtitle mb-2 text-muted" style="margin-left: 35px; margin-top: 1px;">
+                                {{data.farmer.username}}
+                            </h6>
+                        </div>
+                        <div>
+                            <div style="display: flex; gap: 10px;">
+                                <i class="fa-regular fa-user" style="font-size: 21px;"></i>
+                                <h6>Farmer Full-name is</h6>
+                            </div>
+                            <h6 class="card-subtitle mb-2 text-muted" style="margin-left: 35px; margin-top: 1px;">
+                                {{data.farmer.first_name}}
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock data %}
+
+{% block logic %}
+{% endblock logic %}

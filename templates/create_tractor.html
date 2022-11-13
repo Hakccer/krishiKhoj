@@ -1,0 +1,341 @@
+{% extends 'nav.html' %}
+
+{% block data %}
+<div id="form_parent">
+    <form action="add_tractor" method="post" id="trac_form">
+        <div id="trac_boi">
+            {% csrf_token %}
+            <h2>Add Tractor Record</h2>
+            {% if glob_error %}
+            <div class="alert alert-danger" role="alert">
+                {{ glob_error }}
+            </div>
+            {% elif success %}
+            <div class="alert alert-success" role="alert">
+                {{ success }}
+            </div>
+            {% endif %}
+            <div class="form-group">
+                <label for="exampleInputEmail1">Tractor Brand</label>
+                <input type="text" name="brand" class="form-control" id="exampleInputEmail1"
+                    aria-describedby="emailHelp" placeholder="brand">
+                <small id="emailHelp" class="form-text text-muted">please enter your tractor brand name here</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Tractor Name</label>
+                <input type="text" name="trac_name" class="form-control" id="exampleInputEmail1"
+                    aria-describedby="emailHelp" placeholder="enter tractor name here">
+                <small id="emailHelp" class="form-text text-muted">Give your tractor a name</small>
+            </div>
+            <div class="form-group">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Tractor's RPM</label>
+                    <input type="number" name="rpm" class="form-control" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" placeholder="rpm of the tractor">
+                    <small id="emailHelp" class="form-text text-muted">please enter your tractor's rpm here</small>
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <h4>
+                        Driver's Seat
+                    </h4>
+                    <small>select anyone of two</small>
+                </div>
+                <div style="margin-left: 20px;">
+                    <div class="input-group" style="margin-bottom: 10px;">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="radio" value="Granular" checked name="driver_seat"
+                                    aria-label="Radio button for following text input">
+                            </div>
+                        </div>
+                        <input readonly type="text" value="Granular" class="form-control"
+                            aria-label="Text input with radio button">
+                    </div>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="radio" value="Linear" name="driver_seat"
+                                    aria-label="Radio button for following text input">
+                            </div>
+                        </div>
+                        <input readonly type="text" value="Linear" name="" class="form-control"
+                            aria-label="Text input with radio button">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <h4>
+                        Cab Suspension
+                    </h4>
+                    <small>select anyone of two</small>
+                </div>
+                <div style="margin-left: 20px;">
+                    <div class="input-group" style="margin-bottom: 10px;">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="radio" value="Silent-blocks" checked name="cab"
+                                    aria-label="Radio button for following text input">
+                            </div>
+                        </div>
+                        <input readonly type="text" value="Silent-blocks" class="form-control"
+                            aria-label="Text input with radio button">
+                    </div>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="radio" value="Pneumatic springs" name="cab"
+                                    aria-label="Radio button for following text input">
+                            </div>
+                        </div>
+                        <input readonly type="text" value="Pneumatic springs" name="" class="form-control"
+                            aria-label="Text input with radio button">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <h4>
+                        Front Axle Suspension
+                    </h4>
+                    <small>is it there select Yes or No below</small>
+                </div>
+                <div style="margin-left: 20px;">
+                    <div class="input-group" style="margin-bottom: 10px;">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="radio" value="Yes" name="axle" checked
+                                    aria-label="Radio button for following text input">
+                            </div>
+                        </div>
+                        <input readonly type="text" value="Yes" class="form-control"
+                            aria-label="Text input with radio button">
+                    </div>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="radio" value="No" name="axle"
+                                    aria-label="Radio button for following text input">
+                            </div>
+                        </div>
+                        <input readonly type="text" value="No" class="form-control"
+                            aria-label="Text input with radio button">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <h4>
+                        Wheel Drive
+                    </h4>
+                    <small>select anyone of two</small>
+                </div>
+                <div style="margin-left: 20px;">
+                    <div class="input-group" style="margin-bottom: 10px;">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="radio" value="4wd" name="wheel" checked
+                                    aria-label="Radio button for following text input">
+                            </div>
+                        </div>
+                        <input readonly type="text" value="4WD (4 Wheel Drive)" class="form-control"
+                            aria-label="Text input with radio button">
+                    </div>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="radio" value="2wd" name="wheel"
+                                    aria-label="Radio button for following text input">
+                            </div>
+                        </div>
+                        <input readonly type="text" value="2WD (2 Wheel Drive)" class="form-control"
+                            aria-label="Text input with radio button">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <h4>
+                        Gear Box Type
+                    </h4>
+                    <small>select anyone of two</small>
+                </div>
+                <div style="margin-left: 20px;">
+                    <div class="input-group" style="margin-bottom: 10px;">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="radio" value="Fully Synchronized" name="gear" checked
+                                    aria-label="Radio button for following text input">
+                            </div>
+                        </div>
+                        <input readonly type="text" value="Fully Synchronized" class="form-control"
+                            aria-label="Text input with radio button">
+                    </div>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="radio" value="Automatic Power Shift" name="gear"
+                                    aria-label="Radio button for following text input">
+                            </div>
+                        </div>
+                        <input readonly type="text" value="Automatic Power Shift" class="form-control"
+                            aria-label="Text input with radio button">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <h4>
+                        Front Power Take-off
+                    </h4>
+                    <small>select anyone of two</small>
+                </div>
+                <div style="margin-left: 20px;">
+                    <div class="input-group" style="margin-bottom: 10px;">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="radio" value="Yes" name="power" checked
+                                    aria-label="Radio button for following text input">
+                            </div>
+                        </div>
+                        <input readonly type="text" value="Yes" class="form-control"
+                            aria-label="Text input with radio button">
+                    </div>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="radio" value="No" name="power"
+                                    aria-label="Radio button for following text input">
+                            </div>
+                        </div>
+                        <input readonly type="text" value="No" class="form-control"
+                            aria-label="Text input with radio button">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <h4>
+                    Implementations
+                </h4>
+                <small>selecting one is must</small>
+            </div>
+            <div style="margin-left: 20px;">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" value="Harrow" name="Lol"
+                                aria-label="Checkbox for following text input">
+                        </div>
+                    </div>
+                    <input readonly type="text" class="form-control" value="Harrow"
+                        aria-label="Text input with checkbox">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" value="Cultivator" name="Lol"
+                                aria-label="Checkbox for following text input">
+                        </div>
+                    </div>
+                    <input readonly type="text" class="form-control" value="Cultivator"
+                        aria-label="Text input with checkbox">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" value="Rotavator" name="Lol"
+                                aria-label="Checkbox for following text input">
+                        </div>
+                    </div>
+                    <input readonly type="text" class="form-control" value="Rotavator"
+                        aria-label="Text input with checkbox">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" value="Plough" name="Lol"
+                                aria-label="Checkbox for following text input">
+                        </div>
+                    </div>
+                    <input readonly type="text" class="form-control" value="Plough"
+                        aria-label="Text input with checkbox">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" value="Paddy Thrasher" name="Lol"
+                                aria-label="Checkbox for following text input">
+                        </div>
+                    </div>
+                    <input readonly type="text" class="form-control" value="Paddy Thrasher"
+                        aria-label="Text input with checkbox">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" value="Dumping Trailer" name="Lol"
+                                aria-label="Checkbox for following text input">
+                        </div>
+                    </div>
+                    <input readonly type="text" class="form-control" value="Dumping Trailer"
+                        aria-label="Text input with checkbox">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" value="4 wheel Trailer" name="Lol"
+                                aria-label="Checkbox for following text input">
+                        </div>
+                    </div>
+                    <input readonly type="text" class="form-control" value="4 wheel Trailer"
+                        aria-label="Text input with checkbox">
+                </div>
+            </div>
+            <button type="submit" style="width: 100%; margin-bottom: 30px;" class="btn btn-primary">Submit</button>
+        </div>
+
+    </form>
+</div>
+{% endblock data %}
+
+
+{% block logic %}
+<style>
+    #form_parent {
+        display: flex;
+        justify-content: center;
+        margin-top: 8%;
+    }
+
+    #trac_form {
+        width: 550px;
+    }
+
+    #trac_boi {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    @media only screen and (max-width:721px) {
+        #form_parent {
+            display: block;
+            margin-right: 20px;
+            margin-left: 20px;
+        }
+
+        #trac_form {
+            width: 100%;
+        }
+    }
+</style>
+<script>
+    Array.from(document.getElementsByName('driver_seat')).forEach(ele => {
+        ele.addEventListener('click', () => {
+            console.log(document.getElementsByName('driver_seat'));
+        });
+    })
+</script>
+{% endblock logic %}

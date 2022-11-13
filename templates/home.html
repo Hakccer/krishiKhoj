@@ -1,0 +1,49 @@
+{% extends 'nav.html' %}
+
+{% block data %}
+<div style="margin: 20px;">
+    <h3 style="border-bottom: 5px solid black; padding-bottom: 10px;">{{request.user.username}}'s tractor records</h3>
+    {% if error %}
+    <h4 style="margin-top: 30px; text-align: center;">{{error}}</h4>
+    {% else %}
+    <div style="display: flex; flex-direction: column; gap: 17px;">
+        {% for i in data %}
+        <div class="card" style="width: 100%; border: 1.3px solid grey;">
+            <div class="card-body">
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <div style="display: flex; gap: 10px; margin-bottom: 5px;">
+                        <i class="fa-solid fa-tractor" style="margin-top: 5px;"></i>
+                        <h4 class="card-title">{{i.naming}}</h5>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <i class="fa-solid fa-id-card" style="font-size: 21px;"></i>
+                        <h6 class="card-subtitle mb-2 text-muted" style="margin-top: 0px;">{{i.trac_id}}</h6>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <i class="fa-solid fa-copyright" style="font-size: 21px;"></i>
+                        <h6 class="card-subtitle mb-2 text-muted" style="margin-top: 0px;">{{i.brand}}</h6>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <i class="fa-solid fa-user" style="font-size: 21px;"></i>
+                        <h6 class="card-subtitle mb-2 text-muted" style="margin-top: 0px;">{{i.farmer.username}}</h6>
+                    </div>
+                    <div>
+                        <button style="width: fit-content;"
+                            onclick="location.href='{{ request.scheme }}://{{ request.get_host }}{% url 'single' i.trac_id %}'"
+                            class="btn btn-primary">Details</button>
+                        <button style="width: fit-content;"
+                            onclick="location.href='{{ request.scheme }}://{{ request.get_host }}{% url 'delete_record' i.trac_id %}'"
+                            class="btn btn-primary">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+{% endblock data %}
+
+
+{% block logic %}
+{% endblock logic %}

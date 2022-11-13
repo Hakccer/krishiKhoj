@@ -1,0 +1,57 @@
+{% extends 'nav.html' %}
+
+{% block data %}
+<div>
+    <div class="card" style="margin: 20px; padding:20px;">
+        <div>
+            <div style="margin-top: 10px; padding-top: 10px;">
+                <div id="specs_head" style="display: flex; gap: 10px;">
+                    <i style="font-size: 30px;" class="fa-solid fa-user"></i>
+                    <h4>My Info</h4>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 10px; margin-left: 25px; margin-top: 25px;">
+                    <div>
+                        <div style="display: flex; gap: 10px;">
+                            <i class="fa-solid fa-envelope" style="font-size: 21px;"></i>
+                            <h6>Farmer email is</h6>
+                        </div>
+                        <h6 class="card-subtitle mb-2 text-muted" style="margin-left: 35px; margin-top: 1px;">
+                            {{request.user.email}}
+                        </h6>
+                    </div>
+                    <div>
+                        <div style="display: flex; gap: 10px;">
+                            <i class="fa-solid fa-signature" style="font-size: 21px;"></i>
+                            <h6>Farmer username is</h6>
+                        </div>
+                        <h6 class="card-subtitle mb-2 text-muted" style="margin-left: 35px; margin-top: 1px;">
+                            {{request.user.username}}
+                        </h6>
+                    </div>
+                    <div>
+                        <div style="display: flex; gap: 10px;">
+                            <i class="fa-regular fa-user" style="font-size: 21px;"></i>
+                            <h6>Farmer Full-name is</h6>
+                        </div>
+                        <h6 class="card-subtitle mb-2 text-muted" style="margin-left: 35px; margin-top: 1px;">
+                            {{request.user.first_name}}
+                        </h6>
+                    </div>
+                    <div>
+                        <div style="display: flex; gap: 10px;">
+                            <i class="fa-solid fa-key" style="font-size: 21px;"></i>
+                            <h6>Farmer's account hashed password is</h6>
+                        </div>
+                        <h6 class="card-subtitle mb-2 text-muted" style="margin-left: 35px; margin-top: 1px;">
+                            {{request.user.password}}
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock data %}
+
+{% block logic %}
+{% endblock logic %}

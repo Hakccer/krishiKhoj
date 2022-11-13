@@ -1,0 +1,49 @@
+{% extends 'nav.html' %}
+
+{% block data %}
+<div id="form_parent">
+    <form action="/verify/{{email}}" method="post">
+        {% csrf_token %}
+        <h2 style="margin-bottom: 15px;">Verify Email</h2>
+        {% if error %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+        {% endif %}
+        <div class="form-group">
+            <label for="exampleInputEmail1">we have sented an verification otp {{email}}</label>
+            <input type="number" name="otp" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                placeholder="Enter otp here">
+            <small id="emailHelp" class="form-text text-muted">every otp you will request will be valid for 2 minutes
+                only
+            </small>
+        </div>
+        <div style="display: flex; width: 100%; gap: 10px;">
+            <button type="submit" class="btn btn-primary" style="flex: 1;">Submit</button>
+            <button type="button" class="btn btn-primary"
+                onclick="location.href='{{ request.scheme }}://{{ request.get_host }}{% url 'resend_otp' email %}'"
+                style="flex: 1;">Resend</button>
+        </div>
+    </form>
+</div>
+{% endblock data %}
+
+
+{% block logic %}
+<style>
+    #form_parent {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10%;
+    }
+
+    @media only screen and (max-width:721px) {
+        #form_parent {
+            display: block;
+            margin-right: 20px;
+            margin-left: 20px;
+        }
+    }
+</style>
+{% endblock logic %}

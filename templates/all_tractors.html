@@ -1,0 +1,96 @@
+{% extends 'nav.html' %}
+
+{% block data %}
+<div>
+    <div style="margin: 20px;">
+        <div class="input-group flex-nowrap">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="addon-wrapping">Tractor ID</span>
+            </div>
+            <input type="text" id="my_trac_search" class="form-control" placeholder="Enter tractor id here"
+                aria-label="Username" aria-describedby="addon-wrapping">
+        </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 17px; margin: 20px;" id="trac_suit">
+        {% for i in data %}
+        <div class="card" style="width: 100%; border: 1.3px solid grey;">
+            <div class="card-body">
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <div style="display: flex; gap: 10px; margin-bottom: 5px;">
+                        <i class="fa-solid fa-tractor" style="margin-top: 5px;"></i>
+                        <h4 class="card-title">{{i.naming}}</h5>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <i class="fa-solid fa-id-card" style="font-size: 21px;"></i>
+                        <h6 class="card-subtitle mb-2 text-muted" style="margin-top: 0px;">{{i.trac_id}}</h6>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <i class="fa-solid fa-copyright" style="font-size: 21px;"></i>
+                        <h6 class="card-subtitle mb-2 text-muted" style="margin-top: 0px;">{{i.brand}}</h6>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <i class="fa-solid fa-user" style="font-size: 21px;"></i>
+                        <h6 class="card-subtitle mb-2 text-muted" style="margin-top: 0px;">{{i.farmer.username}}</h6>
+                    </div>
+                    <button class="btn btn-primary"
+                    onclick="location.href='{{ request.scheme }}://{{ request.get_host }}{% url 'single' i.trac_id %}'"
+                        ;` style="width: fit-content;">Details</button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock data %}
+
+{% block logic %}
+<script>
+    //getting_all_of_them
+    var my_all_trac_div = document.getElementById('trac_suit')
+    var inputer = document.getElementById('my_trac_search')
+
+    inputer.addEventListener('input', () => {
+        $(document).ready(function () {
+            console.log(inputer.value);
+            $.ajax({
+                url: '/getting_all_of_them',
+                type: 'GET',
+                data: {
+                    query: inputer.value
+                },
+                success: (res) => {
+                    my_all_trac_div.innerHTML = ``
+                    for (let i = 0; i < res.data.length; i++) {
+                        my_all_trac_div.innerHTML += `
+                        <div class="card" style="width: 100%; border: 1.3px solid grey;">
+            <div class="card-body">
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <div style="display: flex; gap: 10px; margin-bottom: 5px;">
+                        <i class="fa-solid fa-tractor" style="margin-top: 5px;"></i>
+                        <h4 class="card-title">${res.data[i].naming}</h5>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <i class="fa-solid fa-id-card" style="font-size: 21px;"></i>
+                        <h6 class="card-subtitle mb-2 text-muted" style="margin-top: 0px;">${res.data[i].trac_id}</h6>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <i class="fa-solid fa-copyright" style="font-size: 21px;"></i>
+                        <h6 class="card-subtitle mb-2 text-muted" style="margin-top: 0px;">${res.data[i].brand}</h6>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <i class="fa-solid fa-user" style="font-size: 21px;"></i>
+                        <h6 class="card-subtitle mb-2 text-muted" style="margin-top: 0px;">${res.data[i].username}</h6>
+                    </div>
+                    <button class="btn btn-primary" onclick="location.href='http://127.0.0.1:8000/tractors/${res.data[i].trac_id}';" style="width: fit-content;">Details</button>
+                </div>
+            </div>
+        </div>
+                        `
+                    }
+                }
+            })
+        })
+    })
+
+</script>
+{% endblock logic %}
